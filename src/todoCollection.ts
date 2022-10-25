@@ -1,6 +1,11 @@
 import { it } from 'node:test';
 import { TodoItem } from './todoItem';
 
+type ItemCounts = {
+  total: number;
+  incomplete: number;
+};
+
 export class TodoCollection {
   private nextId: number = 1;
   private itemMap = new Map<number, TodoItem>();
@@ -26,6 +31,13 @@ export class TodoCollection {
     return [...this.itemMap.values()].filter(
       (item) => includeComplete || !item.complete
     );
+  }
+
+  getItemCounts(): ItemCounts {
+    return {
+      total: this.itemMap.size,
+      incomplete: this.getTodoItems(false).length,
+    };
   }
 
   markComplete(id: number, complete: boolean): void {

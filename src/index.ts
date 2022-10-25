@@ -13,9 +13,16 @@ let todos: TodoItem[] = [
 let collection: TodoCollection = new TodoCollection('Richard', todos);
 
 console.clear();
+console.log(`*************************************************************`);
 console.log(
-  `%c${collection.userName}´s Todo List`,
-  'background: #222; color: #bada55'
+  `*****                ${collection.userName}´s Todo List                *****`
+);
+console.log(`*************************************************************`);
+console.log(
+  `
+        (${collection.getItemCounts().incomplete} items to do)` +
+    ` of (${collection.getItemCounts().total} in total)
+    `
 );
 
 let newId: number = collection.addTodo('Ir a correr');
@@ -24,5 +31,5 @@ let todoItem: TodoItem = collection.getTodoById(newId);
 // console.log(JSON.stringify(todoItem));
 
 // collection.addTodo(todoItem);
-collection.removeComplete();
+// collection.removeComplete();
 collection.getTodoItems(true).forEach((item) => item.printDetails());
