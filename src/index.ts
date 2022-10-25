@@ -24,4 +24,5 @@ let todoItem: TodoItem = collection.getTodoById(newId);
 // console.log(JSON.stringify(todoItem));
 
 // collection.addTodo(todoItem);
+collection.removeComplete();
 collection.getTodoItems(true).forEach((item) => item.printDetails());

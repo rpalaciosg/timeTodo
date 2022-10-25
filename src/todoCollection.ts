@@ -1,3 +1,4 @@
+import { it } from 'node:test';
 import { TodoItem } from './todoItem';
 
 export class TodoCollection {
@@ -32,5 +33,13 @@ export class TodoCollection {
     if (todoItem) {
       todoItem.complete = complete;
     }
+  }
+
+  removeComplete() {
+    this.itemMap.forEach((item) => {
+      if (item.complete) {
+        this.itemMap.delete(item.id);
+      }
+    });
   }
 }
