@@ -2,6 +2,8 @@
 
 import { TodoCollection } from './todoCollection';
 import { TodoItem } from './todoItem';
+const inquirer = require('inquirer');
+// import * as inquirer from inquirer;
 
 let todos: TodoItem[] = [
   new TodoItem(1, 'Comprar Pan'),
@@ -12,24 +14,49 @@ let todos: TodoItem[] = [
 
 let collection: TodoCollection = new TodoCollection('Richard', todos);
 
-console.clear();
-console.log(`*************************************************************`);
-console.log(
-  `*****                ${collection.userName}´s Todo List                *****`
-);
-console.log(`*************************************************************`);
-console.log(
-  `
-        (${collection.getItemCounts().incomplete} items to do)` +
-    ` of (${collection.getItemCounts().total} in total)
+function displayTodoList(): void {
+  console.log(`*************************************************************`);
+  console.log(
+    `*****                ${collection.userName}´s Todo List                *****`
+  );
+  console.log(`*************************************************************`);
+  console.log(
     `
-);
+          (${collection.getItemCounts().incomplete} items to do)` +
+      ` of (${collection.getItemCounts().total} in total)
+      `
+  );
+  collection.getTodoItems(true).forEach((item) => item.printDetails());
+  console.log('\n');
+}
+
+enum Commands {
+  Quit = 'Quit',
+}
+
+function promptUser(): void {
+  console.clear();
+  displayTodoList();
+  inquirer;
+  inquirer
+    .prompt({
+      type: 'list',
+      name: 'command',
+      message: 'Choose option',
+      choices: Object.values(Commands),
+    })
+    .then((answers) => {
+      if (answers['command'] !== Commands.Quit) {
+        promptUser();
+      }
+    });
+}
 
 let newId: number = collection.addTodo('Ir a correr');
 let todoItem: TodoItem = collection.getTodoById(newId);
-// todoItem.printDetails();
-// console.log(JSON.stringify(todoItem));
 
-// collection.addTodo(todoItem);
+promptUser();
+
+// console.log(JSON.stringify(todoItem));
 // collection.removeComplete();
-collection.getTodoItems(true).forEach((item) => item.printDetails());
+// collection.getTodoItems(true).forEach((item) => item.printDetails());
