@@ -2,6 +2,9 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoItem = void 0;
 class TodoItem {
+    id;
+    task;
+    complete;
     constructor(id, task, complete = false) {
         this.id = id;
         this.task = task;
@@ -9,7 +12,7 @@ class TodoItem {
         //no statements required
     }
     printDetails() {
-        console.log(`[${this.complete ? 'complete' : ' '}] ${this.id}.\t${this.task} ${this.complete ? '\t(complete)' : ''}`);
+        console.log(`${this.id}. [${this.complete ? 'X' : ' '}]   ${this.task} ${this.complete ? '\t(complete)' : ''}`);
     }
 }
 exports.TodoItem = TodoItem;
