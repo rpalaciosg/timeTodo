@@ -12,6 +12,7 @@ let todos = [
     new todoItem_1.TodoItem(4, 'Llamar a secretaria', true),
 ];
 let collection = new todoCollection_1.TodoCollection('Richard', todos);
+let showCompleted = true;
 function displayTodoList() {
     console.log(`*************************************************************`);
     console.log(`*****                ${collection.userName}´s Todo List                *****`);
@@ -20,13 +21,26 @@ function displayTodoList() {
           (${collection.getItemCounts().incomplete} items to do)` +
         ` of (${collection.getItemCounts().total} in total)
       `);
-    collection.getTodoItems(true).forEach((item) => item.printDetails());
+    collection.getTodoItems(showCompleted).forEach((item) => item.printDetails());
     console.log('\n');
 }
 var Commands;
 (function (Commands) {
+    Commands["Add"] = "Add new task";
+    Commands["Toggle"] = "Show/Hide Completed";
     Commands["Quit"] = "Quit";
 })(Commands || (Commands = {}));
+function promptAdd() {
+    console.clear();
+    inquirer
+        .prompt({ type: 'input', name: 'add', message: 'Enter task:' })
+        .then((answers) => {
+        if (answers['add'] !== '') {
+            collection.addTodo(answers['add']);
+        }
+        promptUser();
+    });
+}
 function promptUser() {
     console.clear();
     displayTodoList();
@@ -37,11 +51,17 @@ function promptUser() {
         name: 'command',
         message: 'Choose option',
         choices: Object.values(Commands),
-        badProperty: true,
+        // badProperty: true,
     })
         .then((answers) => {
-        if (answers['command'] !== Commands.Quit) {
-            promptUser();
+        switch (answers['command']) {
+            case Commands.Toggle:
+                showCompleted = !showCompleted;
+                promptUser();
+                break;
+            case Commands.Add:
+                promptAdd();
+                break;
         }
     });
 }

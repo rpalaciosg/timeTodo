@@ -3,11 +3,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodoCollection = void 0;
 const todoItem_1 = require("./todoItem");
 class TodoCollection {
-    userName;
-    nextId = 1;
-    itemMap = new Map();
     constructor(userName, todoItems = []) {
         this.userName = userName;
+        this.nextId = 1;
+        this.itemMap = new Map();
         todoItems.forEach((item) => this.itemMap.set(item.id, item));
     }
     addTodo(task) {
