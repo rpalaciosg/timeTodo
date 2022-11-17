@@ -1,0 +1,39 @@
+{
+  "tasks": [
+    {
+      "id": 1,
+      "task": "Comprar Pan",
+      "complete": true
+    },
+    {
+      "id": 2,
+      "task": "Comprar zapatos",
+      "complete": false
+    },
+    {
+      "id": 3,
+      "task": "Recolecat tickets",
+      "complete": false
+    },
+    {
+      "id": 6,
+      "task": "Ir a correr",
+      "complete": false
+    },
+    {
+      "id": 7,
+      "task": "Ir a correr",
+      "complete": false
+    },
+    {
+      "id": 8,
+      "task": "Hacer commit del ultimo cambio",
+      "complete": false
+    },
+    {
+      "id": 4,
+      "task": "Ir a correr",
+      "complete": false
+    }
+  ]
+}

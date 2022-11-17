@@ -1,9 +1,9 @@
 // run `node index.js` in the terminal
 
+import { JsonTodoCollection } from './jsonTodoCollection';
 import { TodoCollection } from './todoCollection';
 import { TodoItem } from './todoItem';
 const inquirer = require('inquirer');
-// import * as inquirer from inquirer;
 
 let todos: TodoItem[] = [
   new TodoItem(1, 'Comprar Pan'),
@@ -12,7 +12,8 @@ let todos: TodoItem[] = [
   new TodoItem(4, 'Llamar a secretaria', true),
 ];
 
-let collection: TodoCollection = new TodoCollection('Richard', todos);
+// let collection: TodoCollection = new TodoCollection('Richard', todos);
+let collection: TodoCollection = new JsonTodoCollection('Richard', todos);
 let showCompleted = true;
 
 function displayTodoList(): void {
