@@ -4,7 +4,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const todoCollection_1 = require("./todoCollection");
 const todoItem_1 = require("./todoItem");
 const inquirer = require('inquirer');
-// import * as inquirer from inquirer;
 let todos = [
     new todoItem_1.TodoItem(1, 'Comprar Pan'),
     new todoItem_1.TodoItem(2, 'Comprar zapatos'),
@@ -74,7 +73,6 @@ function promptUser() {
         name: 'command',
         message: 'Choose option',
         choices: Object.values(Commands),
-        // badProperty: true,
     })
         .then((answers) => {
         switch (answers['command']) {
@@ -103,6 +101,3 @@ function promptUser() {
 let newId = collection.addTodo('Ir a correr');
 let todoItem = collection.getTodoById(newId);
 promptUser();
-// console.log(JSON.stringify(todoItem));
-// collection.removeComplete();
-// collection.getTodoItems(true).forEach((item) => item.printDetails());
